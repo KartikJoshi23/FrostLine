@@ -1,0 +1,2 @@
+# Plan 8.3: install only releases at least 14 days old (20,160 minutes).
+minimumReleaseAge: 20160

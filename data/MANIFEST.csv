@@ -1,0 +1,30 @@
+path,bytes,sha256,rows,made_by,modified_utc
+raw/checksums.md5,3131,4071178863b9074affa397115a3d931b9223d705d78740719ac1b7522b23a575,,"download, see data/raw/SOURCES.md",2026-11-24T17:17:53Z
+raw/eu_sanctions/csvFullSanctionsList_1_1.csv,25458787,87dc9e74a6730e718f19e1779c9eb417548e21f6a02cbb4efab9298c336f68c0,44286,"download, see data/raw/SOURCES.md",2026-11-24T16:33:43Z
+raw/mendeley_62dmsngtfb_v3/dataset.zip,133392,45aeffdb55fc9e77eff595a5fdf5991bc630eeedd4927058a66a043215908494,,"download, see data/raw/SOURCES.md",2026-11-24T16:32:43Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/code/generate_spec_stats.py,11909,2559623328aac340946390cd0aa88ca59ae951d64d49948df25f5f41c6cb4238,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/code/supervised_role_classification_grouped_nested.py,32633,11c8e78f36b1dbcddc8b948663b3861e793ecc20431f9b8b555d64faf6d6827b,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/DATA_AVAILABILITY_STATEMENT.md,1803,0eefbd956b9d6ed3cdd2d977f348b01ab80a30bf48dd58e3e6c8898780172f84,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/DATA_DICTIONARY.md,3228,e59e4c3beaf6b9883e46d409837ab69d5dbc044cf90904a3041c2c868f42adf7,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/judicial_ground_truth_address_labels_public_v2.csv,131257,62ad4c9e3f32a767e6f6f42b85621095292f295198c64abb94d0ae5ea6927331,1150,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/README.md,3404,dfa4a497ab8714242e3d16627abd120c6d379a1cf5a07fb59b512088c13bc9ce,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/tron_trc20_usdt_behavioral_analysis_subset_v2.csv,191565,b84315feae0445af60c5a7932130b1bb1998da1697e6d3b3656087653dd89297,1024,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/tron_trc20_usdt_single_case_grouped_classification_subset_v2.csv,210561,4cc35b1eb4c8243ea9dbfd6e15846563689d5e6ee0e086cf8c6adad769dbacbf,948,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/ofac_mirror/sanctioned_addresses_TRX.txt,9555,a612006c301219904601de2ac1d8af5dcbfa800dd0d1fd54fdf5e04a5f69879e,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:46Z
+raw/ofac_mirror/sanctioned_addresses_USDT.txt,3354,cfbff1789c42fcef339840ef635030e8c481d49ba1227d9250fe1c3230dd4e9f,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:50Z
+raw/opensanctions_il_mod_crypto/nbctf_tron_addresses.csv,35219,fef8be65a5efb391f02faf3a7ce597ae93c5a6286dd699c2228043fe64bf1e0e,688,"download, see data/raw/SOURCES.md",2026-11-24T17:15:38Z
+raw/opensanctions_il_mod_crypto/targets.simple.csv,389144,ca61cfa70eef0139c31628fb12a1edcdd3052765ccd83f67b0819667f9dfff64,1437,"download, see data/raw/SOURCES.md",2026-11-24T16:31:54Z
+raw/references/UAE-supervisory-paper-stablecoins.pdf,1133003,4aeba8d3a59d7a7f8b443c2b36bc95c9f131cd0f2ab2d280b0d9883d32fd0f3c,,"download, see data/raw/SOURCES.md",2026-11-24T16:46:29Z
+raw/SOURCES.md,1830,a313b55b96bcfc232143bcc640242074dbed6b659bf511e14fa6ac0e4df0e862,,"download, see data/raw/SOURCES.md",2026-11-24T17:17:53Z
+raw/uk_sanctions/UK-Sanctions-List.csv,50482321,403e0b5411b79b7622125f564c463f1ee986b4961886dc3be5167244c6e6a58c,58919,"download, see data/raw/SOURCES.md",2026-11-24T16:32:02Z
+raw/zenodo_24031003/Blockchain_Early_Detector.ipynb,158258,918a039ef31768c104c05b3aae32f2633513414f5436c184c8a7f6ae45c3a509,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:23Z
+raw/zenodo_24031003/model_data.parquet,2422212,7a41f4bd0b610faee7dfc7f21667fb5c5f693923be4059fab40e12d0b9bcbbb1,16461,"download, see data/raw/SOURCES.md",2026-11-24T16:31:15Z
+raw/zenodo_24031003/recoverable_analysis.parquet,201339,ebd1892c6d50d1d224294a20d665430161a332b6c36cdb64e2664a7e16f3c3d5,3298,"download, see data/raw/SOURCES.md",2026-11-24T16:31:19Z
+raw/zenodo_24031003/results_summary.json,789,ee6838d5a9fedc9135687c631146fb1915a51adf04c556e8b218d58378f87ca2,,"download, see data/raw/SOURCES.md",2026-11-24T16:30:42Z
+raw/zenodo_24124768/freeze-window.csv,922849,18b49ec28518026f4e1445b0b99042de9d8312d63f7d2973093696e4e2c9fa37,4199,"download, see data/raw/SOURCES.md",2026-11-24T16:31:28Z
+raw/zenodo_24124768/README.md,1530,f2470847c27353ffc56e2dcacb60f8d81fbde64b72e375ae5ba51c2ebb99f676,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:31Z
+raw/zenodo_24124771/freeze-gap-categories.csv,533,ffa4d881041b5e3389dc7229df4153ee2d0c395e5f6638bdb139136d73ec58e3,6,"download, see data/raw/SOURCES.md",2026-11-24T16:31:35Z
+raw/zenodo_24124771/freeze-gap-unfrozen-addresses.csv,233597,17a4c3be9cc45f859265d9acbb615b2cb4f1b04d09f46c01840540ed5aa28de2,1778,"download, see data/raw/SOURCES.md",2026-11-24T16:31:39Z
+raw/zenodo_24124771/README.md,1307,65cc6e741ff3b245545e1da9c3c8802bff2d2b37d693c0ca149b47a7b8f84f58,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:43Z
+raw/zenodo_24124777/README.md,1126,a5a7bc92dac78c85e4433f93498e1dbba4fc42d64be06befda8a3fe68691c1a5,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:15Z
+raw/zenodo_24124777/unfreeze.csv,258260,b7a81698e867e352eabe84be1118278d26befaea87e88f5276efeb4b4e6cdb0f,1284,"download, see data/raw/SOURCES.md",2026-11-24T16:33:11Z

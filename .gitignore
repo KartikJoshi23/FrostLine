@@ -1,0 +1,50 @@
+# FrostLine. The repository may become public: data, keys and sealed lists stay out.
+
+# Data: only the source list, the checksums and the manifest are committed
+data/**
+!data/**/
+!data/raw/SOURCES.md
+!data/raw/checksums.md5
+!data/MANIFEST.csv
+*.parquet
+*.duckdb
+*.duckdb.wal
+*.zip
+
+# Sealed trial lists, salts and trees (master laptop only). Public roots go in trial/
+trial_store/
+
+# Third-party documents and local-only folders
+*.pdf
+archive/
+
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.claude/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.ipynb_checkpoints/
+__marimo__/
+
+# Run stores
+mlruns/
+mlartifacts/
+.dagster/
+dagster_home/
+logs/
+
+# Dashboard
+node_modules/
+dashboard/dist/
+dashboard/test-results/
+dashboard/playwright-report/

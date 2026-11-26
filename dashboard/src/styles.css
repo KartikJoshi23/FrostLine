@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+/* Colour roles from plan 7.3.3. Each colour means one thing everywhere.
+   Starting values: P11 checks contrast and colour-blind separation and may change them. */
+@theme {
+  --color-night-900: #05070d;
+  --color-night-800: #0a0f1c;
+  --color-night-700: #121a2e;
+  --color-snow: #eef3ff;
+  --color-mist: #a9b4c9;
+  --color-steel: #5c6a85;
+  --color-freeze: #8be9ff;
+  --color-flow: #4be3a6;
+  --color-warning: #ffb648;
+  --color-vote: #b193ff;
+  --color-block: #ff6b7d;
+  --font-display: "Bricolage Grotesque Variable", system-ui, sans-serif;
+  --font-sans: "Inter Variable", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+html {
+  color-scheme: dark;
+  background: var(--color-night-900);
+  color: var(--color-snow);
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+}

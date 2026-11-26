@@ -1,0 +1,25 @@
+# Install once per laptop: uv run pre-commit install
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: detect-private-key
+      - id: check-added-large-files
+        args: ["--maxkb=1024"]
+      - id: check-merge-conflict
+  - repo: local
+    hooks:
+      - id: block-data-and-secrets
+        name: block data, keys and sealed lists (plan 9.5)
+        entry: uv run python -m frostline.safety
+        language: system
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types: [python]
