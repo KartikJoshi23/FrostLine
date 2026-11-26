@@ -1,4 +1,18 @@
 path,bytes,sha256,rows,made_by,modified_utc
+final/seed_summary.json,2043,cef9f94dc59d111f7db89aa9c5261d405763bdb630833875d3849722f8da4cee,,pipeline,2026-11-26T18:53:30Z
+final/seed_wallets.csv,677187,546809ec7d1a54b994a4901b33bac4ceb32d15a688e1c0b2e8c00220ddb57f7c,19348,pipeline,2026-11-26T18:53:30Z
+final/seed_wallets.parquet,493233,b410fbb1c7e8233a6565fd59e2d874e8f8819072525bb01e4ffa9ed14ea26c79,19348,pipeline,2026-11-26T18:53:30Z
+interim/kg/edges.parquet,1527013,5f65063d6d9e97ee476356c87c41b8f7d126ff8a6be7875bbfb2209cc67192c8,32285,pipeline,2026-11-26T18:53:32Z
+interim/kg/nodes.parquet,268641,9deccd4c90c8046e7991f312eaf9d9bf32508938a70112b84eae276305372598,21427,pipeline,2026-11-26T18:53:32Z
+interim/kg/summary.json,293,a30e5fa7bab6447428d12b92ea56de9154226777b90940f9f282953f54d64f96,,pipeline,2026-11-26T18:53:32Z
+interim/lists/court_labels.parquet,17233,7ec0c25a007aa49a752b090bb77155d3cccc80cc6bdd048a5adc1c0ffe23de21,640,pipeline,2026-11-26T18:53:16Z
+interim/lists/list_entries.parquet,28846,d0120ec4ed6ca51c4ac31b54b429fdedd1b4827471e06f70608ac1a328094c09,1092,pipeline,2026-11-26T18:53:16Z
+interim/lists/summary.json,313,09f360dc4904ef039ea2d5d447228f83ceff652779a798efbe3d652f0d0a1b8a,,pipeline,2026-11-26T18:53:16Z
+interim/registry/batches.parquet,28931,94d18e3994d3fdb3ac380f54fc1580a1d731d91236c1ed002ebca43521bd4d7e,1842,pipeline,2026-11-26T18:49:31Z
+interim/registry/events.parquet,722925,ab94971aa0b34509d938f47d1472e32670f2218afac9c5e7bc872fd41a11f1f4,11728,pipeline,2026-11-26T18:49:30Z
+interim/registry/proposals.parquet,1195327,edca60b5184b105762b5e593035ac7bf57823dfe8fa3322309aea792a80715c2,12052,pipeline,2026-11-26T18:49:30Z
+interim/registry/summary.json,2217,2d9d459eea6e9d4d80025099c509b37fb351caa985998c63247ac33fe0b75cda,,pipeline,2026-11-26T18:49:32Z
+interim/registry/wallets.parquet,515210,73c18cc83be25da5563b64cca437c4ffe5b0801ca040107d85ef0b441722120a,9416,pipeline,2026-11-26T18:49:31Z
 raw/checksums.md5,3131,4071178863b9074affa397115a3d931b9223d705d78740719ac1b7522b23a575,,"download, see data/raw/SOURCES.md",2026-11-24T17:17:53Z
 raw/eu_sanctions/csvFullSanctionsList_1_1.csv,25458787,87dc9e74a6730e718f19e1779c9eb417548e21f6a02cbb4efab9298c336f68c0,44286,"download, see data/raw/SOURCES.md",2026-11-24T16:33:43Z
 raw/mendeley_62dmsngtfb_v3/dataset.zip,133392,45aeffdb55fc9e77eff595a5fdf5991bc630eeedd4927058a66a043215908494,,"download, see data/raw/SOURCES.md",2026-11-24T16:32:43Z
@@ -10,12 +24,20 @@ raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address La
 raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/README.md,3404,dfa4a497ab8714242e3d16627abd120c6d379a1cf5a07fb59b512088c13bc9ce,,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
 raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/tron_trc20_usdt_behavioral_analysis_subset_v2.csv,191565,b84315feae0445af60c5a7932130b1bb1998da1697e6d3b3656087653dd89297,1024,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
 raw/mendeley_62dmsngtfb_v3/unzipped/Judicially Grounded Virtual Asset Address Labels a/public_release_second_revision2/tron_trc20_usdt_single_case_grouped_classification_subset_v2.csv,210561,4cc35b1eb4c8243ea9dbfd6e15846563689d5e6ee0e086cf8c6adad769dbacbf,948,"download, see data/raw/SOURCES.md",2026-11-24T16:33:46Z
+raw/ofac_mirror/history.jsonl,117251,5a4c24c11fc7dd69f33ed2582bb286c06765d19856dc8aca1f323306ec3d204c,,"download, see data/raw/SOURCES.md",2026-11-26T18:52:22Z
 raw/ofac_mirror/sanctioned_addresses_TRX.txt,9555,a612006c301219904601de2ac1d8af5dcbfa800dd0d1fd54fdf5e04a5f69879e,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:46Z
 raw/ofac_mirror/sanctioned_addresses_USDT.txt,3354,cfbff1789c42fcef339840ef635030e8c481d49ba1227d9250fe1c3230dd4e9f,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:50Z
 raw/opensanctions_il_mod_crypto/nbctf_tron_addresses.csv,35219,fef8be65a5efb391f02faf3a7ce597ae93c5a6286dd699c2228043fe64bf1e0e,688,"download, see data/raw/SOURCES.md",2026-11-24T17:15:38Z
 raw/opensanctions_il_mod_crypto/targets.simple.csv,389144,ca61cfa70eef0139c31628fb12a1edcdd3052765ccd83f67b0819667f9dfff64,1437,"download, see data/raw/SOURCES.md",2026-11-24T16:31:54Z
 raw/references/UAE-supervisory-paper-stablecoins.pdf,1133003,4aeba8d3a59d7a7f8b443c2b36bc95c9f131cd0f2ab2d280b0d9883d32fd0f3c,,"download, see data/raw/SOURCES.md",2026-11-24T16:46:29Z
 raw/SOURCES.md,1830,a313b55b96bcfc232143bcc640242074dbed6b659bf511e14fa6ac0e4df0e862,,"download, see data/raw/SOURCES.md",2026-11-24T17:17:53Z
+raw/trongrid/AddedBlackList.jsonl,4724824,1aa7d933c95636293eb62e36d93fd1a9298d2b230431aa46cbe52f6f25deb3aa,,"download, see data/raw/SOURCES.md",2026-11-26T18:44:04Z
+raw/trongrid/DestroyedBlackFunds.jsonl,821381,bb3461db93f3a6700a254585f72b19baba45964771d657096fb89240b6a55d03,,"download, see data/raw/SOURCES.md",2026-11-26T18:44:17Z
+raw/trongrid/Execution.jsonl,5245868,0c4c15cde1625bb56d8beeab1c396d4a1907f9d2bb611510ed1dc8912d4a817f,,"download, see data/raw/SOURCES.md",2026-11-26T18:46:26Z
+raw/trongrid/proposal-transactions.jsonl,236390,2770ed0c0a67dc0bcd2b3bf80c9fb1eabd3494412152acbc8c985215515d58a1,,"download, see data/raw/SOURCES.md",2026-11-26T18:48:47Z
+raw/trongrid/pulls.jsonl,264,a2c63fa6450942c33c275a1d04503b6f4c5b379b737c65dd8d23475ad0a7dabc,,"download, see data/raw/SOURCES.md",2026-11-26T18:48:47Z
+raw/trongrid/RemovedBlackList.jsonl,509542,8b70b72fb591d65987210cb04d5d354d429a62c03a8a834fdaeeecfb523ce117,,"download, see data/raw/SOURCES.md",2026-11-26T18:44:10Z
+raw/trongrid/Submission.jsonl,5328868,882dce270ff75b32d6d1a24b7047e6318008c0724ed3345bd2e2d9b69540f7cd,,"download, see data/raw/SOURCES.md",2026-11-26T18:45:22Z
 raw/uk_sanctions/UK-Sanctions-List.csv,50482321,403e0b5411b79b7622125f564c463f1ee986b4961886dc3be5167244c6e6a58c,58919,"download, see data/raw/SOURCES.md",2026-11-24T16:32:02Z
 raw/zenodo_24031003/Blockchain_Early_Detector.ipynb,158258,918a039ef31768c104c05b3aae32f2633513414f5436c184c8a7f6ae45c3a509,,"download, see data/raw/SOURCES.md",2026-11-24T16:31:23Z
 raw/zenodo_24031003/model_data.parquet,2422212,7a41f4bd0b610faee7dfc7f21667fb5c5f693923be4059fab40e12d0b9bcbbb1,16461,"download, see data/raw/SOURCES.md",2026-11-24T16:31:15Z

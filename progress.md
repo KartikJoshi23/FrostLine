@@ -4,7 +4,7 @@ This is the handover file. Read it first. Update it at the end of every session,
 
 - **Repository:** https://github.com/KartikJoshi23/FrostLine (public).
 - **Master laptop:** the laptop this repository was set up on. It holds the official data copy and alone runs the official steps (main BigQuery pull, analysis lock, Test scoring, daily live lists, sealing). See plan 9.5.
-- **Plan:** `implementation-plan.md`, version 2.2 (26 November 2026). The plan wins over this file, unless this file records a later group decision.
+- **Plan:** `implementation-plan.md`, version 2.3 (26 November 2026). The plan wins over this file, unless this file records a later group decision.
 - **Brief:** `Before-the-freeze-Problem-Statement.md`. **Audit:** `audit-log.md`. **Data sources:** `data/raw/SOURCES.md`.
 - **Prompt for every new Claude Code session:** `collaborator-prompt.md`.
 - **Final presentation: Tuesday 15 December 2026.** Day-by-day schedule: plan 9.2.
@@ -18,8 +18,8 @@ This is the handover file. Read it first. Update it at the end of every session,
 |---|---|
 | Stage | Development, started 26 November 2026 |
 | Development gate | **Given** on 26 November 2026 (section 2) |
-| Current phase | **P0 Setup, in progress.** Done on the master laptop: git repository, Python 3.12 environment from `uv.lock`, dashboard environment from `pnpm-lock.yaml`, settings file, data manifest, 32 Python tests and 4 dashboard tests passing, pre-commit hooks, CI file |
-| Next step | On the master laptop: a TronGrid key in `.env`, then the BigQuery sandbox project, then P0's sizing query and BigQuery delay check. From 27 November: P1, P2, P10 (sample recording) and P11 (design tokens) can start in parallel |
+| Current phase | **P1 done** on branch `p1/registry` (not merged yet): registry, votes, list dates, court labels, seed list, evidence-graph base tables, batch rule; every audited number reproduced. **P0** still waits for the TronGrid key, the BigQuery sandbox, the sizing query and the BigQuery delay check |
+| Next step | (1) Review and merge P1. (2) BigQuery sandbox on the master laptop, then the sizing query and the main pull's dry run, so the size can be approved by 28 November. (3) TronGrid key for P10. P2, P10 and P11 can start in parallel from 27 November |
 | Owners | To be assigned by the team (section 4) |
 | Blockers | TronGrid key and BigQuery sandbox (plan 13.2) |
 | Last updated | 26 November 2026, master laptop, Claude Code session |
@@ -40,6 +40,7 @@ This is the handover file. Read it first. Update it at the end of every session,
 | 26 Nov 2026 | **Development go-ahead** | Master laptop session | "audit the plan thoroughly, check for errors, bugs, mistakes, missing things and fix if anything is found, then start the development plan" |
 | 26 Nov 2026 | Decisions about team members belong to the team only | Master laptop session | "you are not allowed to do any such thing, leave that to me, I will tell such information, do not assume anything like that" |
 | 26 Nov 2026 | Public GitHub repository | Master laptop session | "https://github.com/KartikJoshi23/FrostLine - github repo, will keep it public as of now" |
+| 26 Nov 2026 | P1 started | Master laptop session | "Start P1" |
 | – | Main BigQuery pull (about 640 GB, after a dry run) | – | Not given; target 28 November |
 | – | Ollama model download (about 2.5 GB) | – | Not given; needed in P9 |
 | – | Analysis lock | – | Target 4 December, latest 6 December |
@@ -50,7 +51,7 @@ This is the handover file. Read it first. Update it at the end of every session,
 | Phase | Work | Owner | Dates | Status | Notes |
 |---|---|---|---|---|---|
 | P0 | Setup | To be assigned | 26–27 Nov | In progress | Waiting: TronGrid key, BigQuery sandbox, sizing query, BigQuery delay check |
-| P1 | Registry and lists | To be assigned | 27–28 Nov | Not started | |
+| P1 | Registry and lists | To be assigned | 26 Nov | Done | Branch `p1/registry`, not merged. All 2.2 checks pass; split counts settled |
 | P2 | Benchmark | To be assigned | 27–29 Nov | Not started | |
 | P3 | Main pull | To be assigned | 28–30 Nov | Not started | ⛔ needs approval after the dry run |
 | P4 | Features and controls | To be assigned | 1–2 Dec | Not started | |
@@ -86,7 +87,7 @@ The groups of work are in plan 9.3. Owners are written here by the team.
 | Install rule | `uv.lock` resolved with `exclude-newer = 2026-11-12`; `dashboard/pnpm-workspace.yaml` sets `minimumReleaseAge: 20160` (14 days) |
 | Key versions | DuckDB 2.0.0, Polars 2.1.0, pandas 3.1.1, PyArrow 26.0.1, Pandera 0.36.0, Dagster 1.13.29, MLflow 3.18.0, scikit-learn 1.9.1, LightGBM 4.7.0, NetworkX 3.7, PyTorch 2.15.0 (CPU), PyTorch Geometric 2.8.1, NetworKit 11.3, LangGraph 1.2.20, FastAPI 0.162.5, httpx 0.28.1, Ruff 0.17.4 |
 | Dashboard | Node 22.21.1, pnpm 10.30.3; React 19.3.1, TypeScript 5.9.3, Vite 8.3.8, Motion 14.13.0, GSAP 3.15.1, three 0.187.0 and the rest of plan 7.3.4 |
-| git | Branch `main`, remote https://github.com/KartikJoshi23/FrostLine; pre-commit hooks installed |
+| git | `main` (first commit, CI passed) and `p1/registry` (P1 work); remote https://github.com/KartikJoshi23/FrostLine; pre-commit hooks installed |
 | Ollama | Not installed (P9, after the download is approved) |
 | Hardware | 8 threads, 16 GB RAM, 2 GB GPU, about 197 GB free on D: |
 
@@ -95,6 +96,8 @@ The groups of work are in plan 9.3. Owners are written here by the team.
 2. The OpenTimestamps `ots` command fails on Windows, because python-bitcoinlib 0.12.2 looks for an old OpenSSL library. The `opentimestamps` library's calendar client works, so P12 stamps through it (plan 8.1).
 3. Every optional group installs and imports on Windows.
 4. Plain `uv sync` removes the optional groups. Use `uv sync --all-extras` to keep them.
+
+**Rerun P1 on the master laptop:** `uv run python -m frostline.registry.pull`, then `frostline.registry.build`, `frostline.ofac_history`, `frostline.lists`, `frostline.seeds` and `frostline.kg` (each with `uv run python -m`). Or run them all in order, with the blocking checks, from Dagster: `uv run dagster dev -m pipelines.definitions`.
 
 **Set up another laptop:** clone the repository; `uv sync --all-extras`; `uv run pre-commit install`; in `dashboard/`, `pnpm install --frozen-lockfile`; copy `.env.example` to `.env` and add your own TronGrid key; `uv run pytest` and `pnpm test` must pass.
 
@@ -105,7 +108,11 @@ The groups of work are in plan 9.3. Owners are written here by the team.
 | `data/raw` | Downloaded on 24 November 2026; `data/MANIFEST.csv` lists 29 files with SHA-256 and verifies (`uv run python -m frostline.manifest verify`). Other laptops get the files through a private shared folder, then run the same check |
 | BigQuery | Nothing queried. Main pull about 640 GB, best run by 30 November in November's allowance (plan 2.3) |
 | TronGrid | Event census to the end of 23 November 2026 from the audit (temporary scripts; rebuilt in P1) |
-| Registry, transfer store, features, evidence graph, models | None yet |
+| Registry (P1) | `data/interim/registry/`: 11,728 freeze, release and destroy events to 26 Nov 2026 15:16 UTC; 12,052 votes, 11,918 executions; 9,416 wallets (frozen or voted on). Every audited number reproduced at the 24 November cut-off (`summary.json`) |
+| Lists (P1) | `data/interim/lists/`: OFAC 352 (348 dated from the mirror's history), UK 49, EU 3, NBCTF 688 (590 active); 1,038 distinct; 993 of them frozen by the cut-off. Court labels: 640 TRON wallets (480 fraud platform, 160 pseudo broker) |
+| Seed list (P1) | `data/final/seed_wallets.csv`: 19,348 wallets (registry, lists, court labels, 9,249 Early Detection normals). Fingerprint in section 8 |
+| Evidence graph (P1) | `data/interim/kg/`: 21,427 nodes, 32,285 dated facts (644 undated: court labels and 4 OFAC entries) |
+| Transfer store, features, models | None yet |
 | `archive/` | Local only (git-ignored): the original brief |
 | Third-party PDFs in the root folder | Local only (git-ignored) |
 
@@ -113,12 +120,13 @@ The groups of work are in plan 9.3. Owners are written here by the team.
 
 | Month | BigQuery scanned (of 1 TiB free) | TronGrid calls, peak day | Notes |
 |---|---|---|---|
-| November 2026 | 0 | A few public calls without a key (26 Nov: block time and page size) | The free BigQuery month ends on 30 November |
+| November 2026 | 0 | 26 Nov: 316 TronGrid calls without a key (P1 pull), plus a few test calls; GitHub: about 10 API calls and 38 files (OFAC history) | The free BigQuery month ends on 30 November |
 
 ## 8. Locks, seals and live lists
 
 | Item | Target date | SHA-256 or Merkle root | Bitcoin block | Notes |
 |---|---|---|---|---|
+| Seed list, fixed before the pull (plan 2.3) | 26 Nov 2026 | SHA-256 `546809ec7d1a54b994a4901b33bac4ceb32d15a688e1c0b2e8c00220ddb57f7c` | – | 19,348 wallets in `data/final/seed_wallets.csv` |
 | Ten rules and analysis lock | 4 Dec 2026 (latest 6 Dec) | – | – | Before any Test score (plan 6.6) |
 | Rehearsal runs | 2 and 3 Dec 2026 | – | – | Never judged |
 | Daily live lists | 5 to 14 Dec 2026 | – | – | One row per list, added when sealed: date, root, block, size, hits so far |
@@ -132,6 +140,14 @@ The groups of work are in plan 9.3. Owners are written here by the team.
 | Interim report date, if there is one | The team |
 
 ## 10. Session log (newest first)
+
+### 26 November 2026, night · master laptop · Claude Code session · P1
+
+- **Done (P1, branch `p1/registry`):** TronGrid client with the quota guard; pull of every freeze, release, destroy, vote and execution event (316 calls, no key); registry linking each freeze to its vote through the shared transaction, with never-executed votes decoded from their call data; S as the earliest vote; batches and splits; OFAC listing dates from the mirror's history; UK, EU and NBCTF lists and court labels, reading no names; seed list with its fingerprint; evidence-graph base tables; Dagster assets with blocking checks.
+- **Checks run:** every audited number reproduced at the 24 November cut-off (9,357 freezes, 9,317 wallets ever frozen, 9,328 freezes matched to votes, 1,508 batches, largest 779 on 12 Jul 2025, 18 wallets with an earlier unexecuted vote, the split counts, and the rest in `src/frostline/registry/expected.py`). `uv run pytest`: 56 passed. `ruff check` and `ruff format --check`: clean. Manifest: 51 files, verified. CI on `main`: passed.
+- **Findings:** (1) the plan's split table is exact; the audit's 591/759 came from counting with executed votes only; (2) court labels are 640 wallets, not 638; (3) the Early Detection table writes frozen wallets as `T…` and normal ones as `0x…`, which alone gives the label away, so every address is converted on load. Plan version 2.3 records all three.
+- **Files:** `src/frostline/` (`tron.py`, `trongrid.py`, `jsonl.py`, `registry/`, `lists.py`, `ofac_history.py`, `seeds.py`, `kg.py`), `pipelines/definitions.py`, 6 new test files, `implementation-plan.md`, `progress.md`, `data/MANIFEST.csv`.
+- **Next step:** review and merge `p1/registry`; then the BigQuery sandbox and P3's dry run.
 
 ### 26 November 2026, late evening · master laptop · Claude Code session
 

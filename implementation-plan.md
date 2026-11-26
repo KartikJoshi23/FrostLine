@@ -1,6 +1,6 @@
 # FrostLine: Implementation Plan
 
-Version 2.2, 26 November 2026. AI in Finance group project, crime domain. SP Jain School of Global Management, Dubai.
+Version 2.3, 26 November 2026. AI in Finance group project, crime domain. SP Jain School of Global Management, Dubai.
 Group 2: Kartik Joshi, Prem Kukreja, Gagandeep Singh, Samuel Alex.
 Status: **development started on 26 November 2026** (13.1, row 24). **Final presentation: Tuesday 15 December 2026.** The day-by-day schedule is in 9.2. This plan contains no code; the code lives in the repository (9.1).
 
@@ -33,6 +33,13 @@ Approved direction: D1 (primary), D2 and D3 (secondary). D4 is supporting analys
 ---
 
 ## 0. What changed in versions 2, 2.1 and 2.2
+
+**Version 2.3 (26 November 2026, after P1)**
+
+- **Split counts settled.** With S as defined in 2.2 (the earliest vote, executed or not), the registry gives exactly the counts in 2.7, and no batch crosses a split edge. The audit's recount of 591, 137 and 759 batches used the first *executed* vote instead.
+- **Court labels recounted.** 640 valid TRON wallets (480 fraud platform, 160 pseudo broker), not 638 (2.1, 5.2).
+- **Address-format leak confirmed (L10).** In the Early Detection table all 7,212 frozen wallets are written `T…` and all 9,249 normal ones `0x…`. Every address is now converted to one format on load.
+- **Hash rule written down (2.3).** SHA-256 of the address text, first 4 bytes, modulo 200.
 
 **Version 2.2 (26 November 2026, late evening)**
 
@@ -155,7 +162,7 @@ Wording rule: "we found no published tool that does all of these", never "the fi
 | [UK Sanctions List](https://www.gov.uk/government/publications/the-uk-sanctions-list) | Sanctions wallets | Download | 50 MB | The page links Open Government Licence v3.0 |
 | [EU consolidated list](https://data.europa.eu/data/datasets/consolidated-list-of-persons-groups-and-entities-subject-to-eu-financial-sanctions) | Sanctions wallets | Download | 25 MB | European Commission reuse notice |
 | [OpenSanctions: Israel crypto wallets](https://www.opensanctions.org/datasets/il_mod_crypto/) | NBCTF order wallets with order dates | Download | 2.5 MB full file; we keep only wallets, order dates and status | [CC BY-NC 4.0](https://www.opensanctions.org/licensing/): non-commercial only |
-| [Taiwan court labels](https://data.mendeley.com/datasets/62dmsngtfb/3) | Independent label test (D2) | Download | 130 KB | CC BY 4.0. Confirmed: 638 raw TRON wallets (478 fraud platform, 160 pseudo broker); victims' wallets are withheld by the authors |
+| [Taiwan court labels](https://data.mendeley.com/datasets/62dmsngtfb/3) | Independent label test (D2) | Download | 130 KB | CC BY 4.0. Recounted in P1: 640 valid TRON wallets (480 fraud platform, 160 pseudo broker). 16 more TRON rows hold masked placeholders, and victims' wallets are withheld by the authors |
 | FreezeCheck data: [proposal window](https://zenodo.org/records/24124768), [groups](https://zenodo.org/records/24124771), releases and burns (DOI 10.5281/zenodo.24124777) | Cross-checks on our own registry | Download | about 1.4 MB | CC BY 4.0 |
 | **F. Exchange wallet list (we build):** exchange proof-of-reserve pages and protocol documentation | Named hot wallets, bridges and swap contracts (RQ3, RQ5) | By hand, one public link per wallet | about 50 to 200 wallets | **To check per source** before use (P8) |
 
@@ -190,7 +197,7 @@ Rules: first freeze only (36 wallets were frozen more than once). Remove the USD
   1. every wallet in the freeze registry;
   2. every wallet on the sanctions and court lists, frozen or not;
   3. the 9,249 normal wallets of the Zenodo table, so the waterfall (6.1) can recompute them;
-  4. a **hash sample** of all other wallets. A wallet is in or out by a fixed hash of its text, so selection cannot depend on activity or time.
+  4. a **hash sample** of all other wallets. A wallet is in or out by a fixed hash of its text, so selection cannot depend on activity or time: SHA-256 of the `T…` address text, first 4 bytes read as a number, modulo 200, kept if 0 (`frostline.tron.hash_bucket`). P3 checks the address format in BigQuery before the dry run.
 - **What the pull returns:** all transfers of seed wallets, plus a monthly summary for each direct recipient of a frozen wallet's outflow (total in, total out, largest recipient and its share), needed for RQ3 and RQ5. **Output guard:** any wallet-month with more than 5,000 transfers comes back as a monthly summary only. Without this, one exchange hot wallet in the hash sample could return tens of millions of rows.
 - **Very busy wallets (agreed 25 November 2026):** wallets that behave like services at time t are left out of both groups in the same way: over 1,000 distinct counterparties in 90 days, or over 5,000 transfers in 30 days. Repeated with half and double (6.5). We report how many frozen wallets this removes.
 
@@ -256,7 +263,7 @@ We use **risk-set sampling**: at the exact calendar moment of a frozen wallet's 
 | L7 | Exchange, sanctions or scam tags added later | Dated tags used only after their date; undated tags for description only |
 | L8 | Future graph edges | Graph rebuilt at each t, through the as-of filter (3.7) |
 | L9 | Scaling, tuning or early stopping on test data | Fitted on Learn data; tuning on Tune data |
-| L10 | Address format (`T…` against `0x…`) and helper columns | One format; helper columns dropped on load |
+| L10 | Address format (`T…` against `0x…`) and helper columns | One format; helper columns dropped on load. Confirmed in P1: the Early Detection table writes all 7,212 frozen wallets as `T…` and all 9,249 normal ones as `0x…` |
 | L11 | Batch siblings in both Learn and Test | Batches never split |
 | L12 | Voted-but-unexecuted wallets as normals | They leave the pool at their vote, not before |
 | L13 | Balance at freeze as a shortcut | Reported with and without (3.2) |
@@ -277,7 +284,7 @@ All frozen wallets by vote date [chain]. Usable numbers will be lower: of 8,273 
 | **Held out**, not touched | 1 Nov 2026 to the day before the analysis lock | 178 to 23 Nov | 58 | 0 | 0 | 6 | 17 |
 | **Live lists** | Daily from the lock (target 4 December 2026) to 14 December, each judged for 30 days (6.9) | – | – | – | – | – | – |
 
-- A recount in the 25 November audit gave 591, 137 and 759 batches for Learn, Tune and Test. The difference comes from batches near a split boundary. P1 fixes the rule (a batch belongs to the split of its first vote, so L11 holds) and updates this table.
+- **Settled in P1 (26 November).** With S as defined in 2.2, the registry gives exactly these counts, and no batch crosses a split edge, so each batch sits in one split (L11). The audit's recount of 591, 137 and 759 batches used the first executed vote instead of the earliest vote. To 26 November the held-out row has 233 wallets in 70 batches.
 - The 779-wallet batch of 12 July 2025 is 21% of Learn wallets by count, but 718 of them are absent from the Zenodo table, and all 45 we sampled (25, then 20 afresh) had **no USDT transfer** before the freeze; only 2 of the last 20 had ever been activated on TRON [chain]. They cannot be warned about from USDT activity, so they leave the model and stay in the coverage count. The next largest Learn batches have 144 and 95 wallets. A batch's total learning weight is capped at that of 25 wallets.
 - **Coverage ceiling.** Frozen wallets with no earlier USDT activity are reported separately as "not warnable". Early-warning results are given twice: among warnable wallets, and among all freezes.
 - 447 of the Test wallets were mass-released on 14 May 2026; 352 were voted on in Q1 and 95 in Q2. Test results are shown with and without them, and by quarter.
@@ -472,7 +479,7 @@ Steps:
 1. Composition by quarter, against known regime changes: OFAC auto-freezing from December 2023 ([BlockSec](https://blocksec.com/blog/1-26-billion-frozen-usdt-blacklisting-on-ethereum-and-tron-in-2025)); the 12 July 2025 batch; the March–April 2026 wave and its release; the [reported end of T3](https://cointelegraph.com/news/tron-tether-chainalysis-cybercrime-task-force-laundering) in August 2026.
 2. A grid: learn on each origin, test on every other; the same for outcomes.
 3. Leave-one-out results for each origin and outcome.
-4. **Court-label test.** Score Taiwan court-named wallets against Set B-style wallets at the same moments. Of 638 raw wallets, 212 were active on or after 1 July 2024 and 129 were first seen after it; only 2 were ever frozen [data]. The data omit case dates, so we score each wallet on the first of every month in which it was active in the previous 30 days, with no hindsight about its first or last activity. If fewer than 150 survive cleaning, this becomes a description with no claim. The authors call their labels judicially documented, not infallible.
+4. **Court-label test.** Score Taiwan court-named wallets against Set B-style wallets at the same moments. Of 640 valid wallets (P1 recount; the audit counted 638), only 2 were ever frozen [data]. The audit found 212 of its 638 active on or after 1 July 2024 and 129 first seen after it; P6 recounts both from the transfers. The data omit case dates, so we score each wallet on the first of every month in which it was active in the previous 30 days, with no hindsight about its first or last activity. If fewer than 150 survive cleaning, this becomes a description with no claim. The authors call their labels judicially documented, not infallible.
 
 **What the lists cover now [data].** OFAC 352, UK 49, EU 3 and NBCTF 688 TRON wallets (590 under active orders); 1,038 distinct, of which 993 were ever frozen. All US, UK and EU wallets are frozen; 45 NBCTF wallets never were. The lists match 10.7% of ever-frozen, 11.9% of still-frozen wallets and 11.7% of the Zenodo frozen wallets. So about nine freezes in ten are on none of these four lists, and RQ4 gives a range. 2023 OFAC dates in the mirror are unreliable and excluded. None of the 9,249 Zenodo normals is on these lists, and none has been frozen since.
 
